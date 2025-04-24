@@ -8,5 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="javalib" level="project" />
+    <orderEntry type="library" name="library-sp21" level="project" />
+    <orderEntry type="library" name="library-sp21" level="application" />
   </component>
 </module>
