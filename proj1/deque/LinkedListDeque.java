@@ -79,31 +79,26 @@ public class LinkedListDeque<T>
     }
 
 
-    public <T> T removeFirst() {
-        if(isEmpty()){return null;}
+//如果你用第一个版本（带<T>声明的removeLast()），但在调用时，比如LinkedListDeque<Integer>，
+//泛型T在方法被调用时没有被正确匹配或者声明，可能会导致类型不一致，或者在类型擦除后出现问题。
+//而第二个版本，返回的类型是类的定义中的T，很自然和直接。
+    public T removeFirst() {
+
         
-        T tep= (T) senial.next.item;
+        IntNode tep= senial.next;
         senial.next=senial.next.next;
         senial.next.prev=senial;//注意Node2.prev也要更新
-        size--;
-        if(size<=0)
-        {
-            size=0;
-        }
-        return tep;
+        size = (size == 0) ? size : size - 1;
+        return (T)tep.item;
     }
 
-    public <T>T removeLast() {
-        if(isEmpty()){return null;}
-        T tep= (T) senial.prev.item;
+    public T removeLast() {
+
+        IntNode tep=  senial.prev;
         senial.prev=senial.prev.prev;
         senial.prev.next=senial;
-        size--;
-        if(size<=0)
-        {
-            size=0;
-        }
-        return tep;
+        size = (size == 0) ? size : size - 1;
+        return (T)tep.item;
     }
 
     public <T>T get(int x)
@@ -120,6 +115,7 @@ public class LinkedListDeque<T>
         }
         return (T)p.item;
     }
+
 
 
 }
