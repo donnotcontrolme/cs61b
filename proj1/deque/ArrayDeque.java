@@ -16,17 +16,13 @@ public class ArrayDeque<T> {
 
     public int arrayIndex(int index)
     {
-        if(index+firstIndex+1>items.length)
-        {
-            return index+firstIndex+1-items.length;
-        }
-        return firstIndex+index+1;
+        return (firstIndex + 1 + index) % items.length;
     }
 
     public void resize()
     {
         T[] tep=(T[]) new Object[items.length*2];
-        for(int i=0;i<items.length;i++)
+        for(int i=0;i<size;i++)
         {
             tep[items.length*2/4+i]=items[arrayIndex(i)];//将排序后原数组放扩充后数组的正中间
         }
@@ -64,7 +60,7 @@ public class ArrayDeque<T> {
             resize();
         }
         items[lastIndex]=x;
-        if(lastIndex==items.length)
+        if(lastIndex==items.length-1)
         {
             lastIndex=0;
         }
@@ -92,7 +88,7 @@ public class ArrayDeque<T> {
 
     public int size()
     {
-        return size();
+        return size;
     }
 
     public T removeFirst()
@@ -125,7 +121,7 @@ public class ArrayDeque<T> {
         items[arrayIndex(items.length-1)]=null;
         if(lastIndex==0)
         {
-            lastIndex=items.length;
+            lastIndex=items.length-1;
         }
         else
         {
